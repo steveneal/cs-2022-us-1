@@ -42,6 +42,8 @@ public class RfqProcessor {
 
         //TODO: use the TradeDataLoader to load the trade data archives
         TradeDataLoader loader = new TradeDataLoader();
+        String filePath = "src/test/resources/trades/trades.json";
+        trades = loader.loadTrades(session, filePath);
 
         //TODO: take a close look at how these two extractors are implemented
         extractors.add(new TotalTradesWithEntityExtractor());
@@ -53,8 +55,8 @@ public class RfqProcessor {
         JavaDStream<String> lines = streamingContext.socketTextStream("localhost", 9000);
 
         //TODO: convert each incoming line to a Rfq object and call processRfq method with it
-        Rfq rfq = Rfq.fromJson(lines.toString());
-        processRfq(rfq);
+        lines.foreachRDD(rdd -> rdd.collect().forEach(line -> processRfq(Rfq.fromJson(line))));
+
 
         //TODO: start the streaming context
         streamingContext.start();
@@ -69,7 +71,7 @@ public class RfqProcessor {
 
         //TODO: get metadata from each of the extractors
         RfqMetadataExtractor totalExtractor = new TotalTradesWithEntityExtractor();
-        RfqMetadataExtractor volumeExtractor = new TotalTradesWithEntityExtractor();
+        RfqMetadataExtractor volumeExtractor = new VolumeTradedWithEntityYTDExtractor();
 
         Map<RfqMetadataFieldNames, Object> totalMeta = totalExtractor.extractMetaData(rfq, session, trades);
         Map<RfqMetadataFieldNames, Object> volumeMeta = volumeExtractor.extractMetaData(rfq, session, trades);
