@@ -15,6 +15,7 @@ public class Rfq implements Serializable {
     private Long quantity;
     private Double price;
     private String side;
+    //this is a test
 
     public static Rfq fromJson(String json) {
         //TODO: build a new RFQ setting all fields from data passed in the RFQ json message
