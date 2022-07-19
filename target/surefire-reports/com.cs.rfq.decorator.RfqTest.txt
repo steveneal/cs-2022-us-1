@@ -1,0 +1,21 @@
+-------------------------------------------------------------------------------
+Test set: com.cs.rfq.decorator.RfqTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 0.058 sec <<< FAILURE!
+com.cs.rfq.decorator.RfqTest.testJSonFactoryMethod()  Time elapsed: 0.057 sec  <<< FAILURE!
+org.opentest4j.MultipleFailuresError: Multiple Failures (9 failures)
+	java.lang.NullPointerException: <no message>
+	java.lang.NullPointerException: <no message>
+	java.lang.NullPointerException: <no message>
+	java.lang.NullPointerException: <no message>
+	java.lang.NullPointerException: <no message>
+	java.lang.NullPointerException: <no message>
+	java.lang.NullPointerException: <no message>
+	java.lang.NullPointerException: <no message>
+	java.lang.NullPointerException: <no message>
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:80)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:44)
+	at org.junit.jupiter.api.AssertAll.assertAll(AssertAll.java:38)
+	at org.junit.jupiter.api.Assertions.assertAll(Assertions.java:2894)
+	at com.cs.rfq.decorator.RfqTest.testJSonFactoryMethod(RfqTest.java:23)
+
