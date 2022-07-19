@@ -19,30 +19,20 @@ public class RfqDecoratorMain {
         //TODO: create a Spark configuration and set a sensible app name
 
         SparkConf conf = new SparkConf().setAppName("StreamRFQ");
-        JavaStreamingContext jssc = new JavaStreamingContext(conf, Durations.seconds(5));
+
 
         //TODO: create a Spark streaming context
-        JavaDStream<String> lines = jssc.socketTextStream("localhost", 9000);
-        JavaDStream<String> words = lines.flatMap(x -> Arrays.asList(x.split(" ")).iterator());
+        JavaStreamingContext jssc = new JavaStreamingContext(conf, Durations.seconds(5));
 
-
-        //print out the results
-        words.foreachRDD(rdd -> {
-            rdd.collect().forEach(line -> consume(line));
-        });
-
-        jssc.start();
-        jssc.awaitTermination();
         //TODO: create a Spark session
 
-        SparkSession session = SparkSession.builder().appName("StreamRFQ").getOrCreate();
-        JavaSparkContext spark = new JavaSparkContext(session.sparkContext());
+        SparkSession session = SparkSession.builder().config(conf).getOrCreate();
+
 
         //TODO: create a new RfqProcessor and set it listening for incoming RFQs
         RfqProcessor processor = new RfqProcessor(session, jssc);
-    }
-    static void consume(String line) {
-        System.out.println(line);
+        processor.startSocketListener();
+
     }
 
 }
