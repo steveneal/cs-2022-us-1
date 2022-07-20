@@ -26,12 +26,12 @@ public class AverageTradedPriceExtractor implements RfqMetadataExtractor {
 
         Dataset<Row> sqlQueryResults = session.sql(query);
 
-        Object volume = sqlQueryResults.first().get(0);
-        if (volume == null) {
-            volume = 0L;
+        Object avgTradedPx  = sqlQueryResults.first().get(0);
+        if (avgTradedPx  == null) {
+            avgTradedPx  = 0L;
         }
         Map<RfqMetadataFieldNames, Object> results = new HashMap<>();
-        results.put(RfqMetadataFieldNames.averageTradedPrice, volume);
+        results.put(RfqMetadataFieldNames.avgTradedPriceInstrumentPastWeek, avgTradedPx );
 
         return results;
     }
