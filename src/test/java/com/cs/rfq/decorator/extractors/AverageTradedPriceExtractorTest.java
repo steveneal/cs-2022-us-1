@@ -32,7 +32,7 @@ class AverageTradedPriceTest extends AbstractSparkUnitTest{
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq1, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.averageTradedPrice);
+        Object result = meta.get(RfqMetadataFieldNames.avgTradedPriceInstrumentPastWeek);
 
         assertEquals(140.18225, result);
     }
@@ -51,7 +51,7 @@ class AverageTradedPriceTest extends AbstractSparkUnitTest{
 
         Map<RfqMetadataFieldNames, Object> meta = extractor.extractMetaData(rfq2, session, trades);
 
-        Object result = meta.get(RfqMetadataFieldNames.averageTradedPrice);
+        Object result = meta.get(RfqMetadataFieldNames.avgTradedPriceInstrumentPastWeek);
 
         assertEquals(0L, result);
     }
