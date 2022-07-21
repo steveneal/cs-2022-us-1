@@ -46,7 +46,7 @@ public class RfqProcessor {
         extractors.add(new TotalTradesWithEntityExtractor());
         extractors.add(new VolumeTradedWithEntityYTDExtractor());
         extractors.add(new AverageTradedPriceExtractor());
-        extractors.add(new InstrumentLiquidityExtractor());
+       // extractors.add(new InstrumentLiquidityExtractor());
         extractors.add(new TotalVolumeTradedByInstrumentExtractor());
         extractors.add(new TradeSideBiasExtractor());
     }
@@ -74,14 +74,14 @@ public class RfqProcessor {
         RfqMetadataExtractor totalExtractor = new TotalTradesWithEntityExtractor();
         RfqMetadataExtractor volumeExtractor = new VolumeTradedWithEntityYTDExtractor();
         RfqMetadataExtractor avgPriceExtractor = new AverageTradedPriceExtractor();
-        RfqMetadataExtractor instrumentLiqExtractor = new InstrumentLiquidityExtractor();
+       // RfqMetadataExtractor instrumentLiqExtractor = new InstrumentLiquidityExtractor();
         RfqMetadataExtractor totalInstrumentalVolExtractor = new TotalVolumeTradedByInstrumentExtractor();
         RfqMetadataExtractor tradesideBiasExtractor = new TradeSideBiasExtractor();
 
         Map<RfqMetadataFieldNames, Object> totalMeta = totalExtractor.extractMetaData(rfq, session, trades);
         Map<RfqMetadataFieldNames, Object> volumeMeta = volumeExtractor.extractMetaData(rfq, session, trades);
         Map<RfqMetadataFieldNames, Object> avgPriceMeta = avgPriceExtractor.extractMetaData(rfq, session, trades);
-        Map<RfqMetadataFieldNames, Object> instrumentLiqMeta = instrumentLiqExtractor.extractMetaData(rfq, session, trades);
+       // Map<RfqMetadataFieldNames, Object> instrumentLiqMeta = instrumentLiqExtractor.extractMetaData(rfq, session, trades);
         Map<RfqMetadataFieldNames, Object> totalInstrumentalVolMeta = totalInstrumentalVolExtractor.extractMetaData(rfq, session, trades);
         Map<RfqMetadataFieldNames, Object> trdsideBiasMeta = tradesideBiasExtractor.extractMetaData(rfq, session,trades);
 
@@ -91,7 +91,7 @@ public class RfqProcessor {
         publisher.publishMetadata(totalMeta);
         publisher.publishMetadata(volumeMeta);
         publisher.publishMetadata(avgPriceMeta);
-        publisher.publishMetadata(instrumentLiqMeta);
+        //publisher.publishMetadata(instrumentLiqMeta);
         publisher.publishMetadata(totalInstrumentalVolMeta);
         publisher.publishMetadata(trdsideBiasMeta);
 

@@ -18,7 +18,7 @@ public class RfqDecoratorMain {
 
 
         //TODO: create a Spark streaming context
-        JavaStreamingContext streamingContext = new JavaStreamingContext(conf, Durations.seconds(5));
+        JavaStreamingContext jssc = new JavaStreamingContext(conf, Durations.seconds(1));
 
         //TODO: create a Spark session
 
@@ -26,7 +26,7 @@ public class RfqDecoratorMain {
 
 
         //TODO: create a new RfqProcessor and set it listening for incoming RFQs
-        KafkaRfqProcessor processor = new KafkaRfqProcessor(session, streamingContext);
+        KafkaRfqProcessor processor = new KafkaRfqProcessor(session, jssc);
 
         JavaDStream<String> stream = processor.initRfqStream();
 
@@ -35,8 +35,8 @@ public class RfqDecoratorMain {
         });
 
         System.out.println("Listening for RFQs");
-        streamingContext.start();
-        streamingContext.awaitTermination();
+        jssc.start();
+        jssc.awaitTermination();
 
     }
 
