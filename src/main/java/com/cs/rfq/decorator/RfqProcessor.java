@@ -48,6 +48,7 @@ public class RfqProcessor {
         extractors.add(new AverageTradedPriceExtractor());
         extractors.add(new InstrumentLiquidityExtractor());
         extractors.add(new TotalVolumeTradedByInstrumentExtractor());
+        extractors.add(new TradeSideBiasExtractor());
     }
 
     public void startSocketListener() throws InterruptedException {
@@ -75,12 +76,14 @@ public class RfqProcessor {
         RfqMetadataExtractor avgPriceExtractor = new AverageTradedPriceExtractor();
         RfqMetadataExtractor instrumentLiqExtractor = new InstrumentLiquidityExtractor();
         RfqMetadataExtractor totalInstrumentalVolExtractor = new TotalVolumeTradedByInstrumentExtractor();
+        RfqMetadataExtractor tradesideBiasExtractor = new TradeSideBiasExtractor();
 
         Map<RfqMetadataFieldNames, Object> totalMeta = totalExtractor.extractMetaData(rfq, session, trades);
         Map<RfqMetadataFieldNames, Object> volumeMeta = volumeExtractor.extractMetaData(rfq, session, trades);
         Map<RfqMetadataFieldNames, Object> avgPriceMeta = avgPriceExtractor.extractMetaData(rfq, session, trades);
         Map<RfqMetadataFieldNames, Object> instrumentLiqMeta = instrumentLiqExtractor.extractMetaData(rfq, session, trades);
         Map<RfqMetadataFieldNames, Object> totalInstrumentalVolMeta = totalInstrumentalVolExtractor.extractMetaData(rfq, session, trades);
+        Map<RfqMetadataFieldNames, Object> trdsideBiasMeta = tradesideBiasExtractor.extractMetaData(rfq, session,trades);
 
         //TODO: publish the metadata
         //publishermetadataJsonLogPublisher = new MetadataJsonLogPublisher();
@@ -90,6 +93,7 @@ public class RfqProcessor {
         publisher.publishMetadata(avgPriceMeta);
         publisher.publishMetadata(instrumentLiqMeta);
         publisher.publishMetadata(totalInstrumentalVolMeta);
+        publisher.publishMetadata(trdsideBiasMeta);
 
     }
 }
