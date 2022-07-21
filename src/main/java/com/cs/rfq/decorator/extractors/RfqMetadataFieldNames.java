@@ -12,7 +12,7 @@ public enum RfqMetadataFieldNames {
     instrumentLiquidity,
     instrumentalVolumeToday,
     instrumentalVolumePastWeek,
-    instrumentalVolumePastYear
+    instrumentalVolumePastYear,
     tradeBiasWeekToDate,
     tradeBiasMonthToDate
 }
