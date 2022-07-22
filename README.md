@@ -5,19 +5,19 @@ users to trade the stocks, bonds and entities. The purpose of building this soft
 the existing functionality of trading system within the bank. It is implemented internally as a suite of 
 components which communicate by passing Kafka messages across the network to one another.
 
-# Contributors 
+## Contributors 
 The Raleigh Boys Team
 - Project Manager: Henry Van Eijk 
 - Software Engineer: Rishant Rokaha
 - Software Developer: Ethan Kenny
 - Software Developer: Richmond Agyapong
 
-# Tools and Technologies
+## Tools and Technologies
 - HDFS
 - Apache Kafka
 - Java 
 
-# Getting started with the Project
+## Getting started with the Project
 
 ### Guide to set up Kafka
 You will need to install and run the Kafka.
