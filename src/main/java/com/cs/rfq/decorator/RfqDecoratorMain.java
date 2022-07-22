@@ -30,8 +30,14 @@ public class RfqDecoratorMain {
 
         JavaDStream<String> stream = processor.initRfqStream();
 
+        RfqProcessor rfqProcessor = new RfqProcessor(session, jssc);
+
         stream.foreachRDD(rdd -> {
-            rdd.collect().stream().map(Rfq::fromJson).forEach(System.out::println);
+            rdd.collect().stream().map(input -> {
+                Rfq rfq = Rfq.fromJson(input);
+                rfqProcessor.processRfq(rfq);
+                return rfq;
+            }).forEach(System.out::println);
         });
 
         System.out.println("Listening for RFQs");
